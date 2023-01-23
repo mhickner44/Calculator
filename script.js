@@ -18,10 +18,13 @@ function operatorCounting() {
 }
 
 
-
+const regex=/(\W)/;
 function displayText() {
-    textDisplay.textContent += this.textContent + "";
-
+    if (textDisplay.textContent == "" && regex.test(this.textContent)) {
+        count=0;
+    } else {
+        textDisplay.textContent += this.textContent + "";
+    }
 };
 
 function clearDisplay() {
@@ -32,7 +35,7 @@ function clearDisplay() {
 
 function processDisplay() {
     //for the operator  count
-   
+
     let num1 = 0;
     let num2 = 0;
     equation = textDisplay.textContent;
