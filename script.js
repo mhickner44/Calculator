@@ -39,7 +39,7 @@ function processDisplay() {
     let num1 = 0;
     let num2 = 0;
     equation = textDisplay.textContent;
-    const str = "You cannot divide by zero";
+    const str = "UNDEFINED";
     if (equation.includes(str)) {
         //reset the text display 
         return clearDisplay();
@@ -105,9 +105,9 @@ function operate(num1, num2, operator) {
             operator = "divide";
             break;
     }
-    answer = window[operator](num1, num2);
+    answer = window[operator](num1, num2);  
     if (answer == "Infinity") {
-        answer = "You cannot divide by zero";
+        answer = "UNDEFINED";
     } else {
         answer = Math.round(answer * 100) / 100
     }
