@@ -11,4 +11,4 @@ What I learned
 
 
   
-   ![alt text](https://imgur.com/a/oaYTv8g)
+   ![Calculator project](https://i.imgur.com/e99FbsT.png)
