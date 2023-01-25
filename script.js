@@ -4,7 +4,6 @@ const input = document.querySelectorAll(".input");
 const del = document.getElementById("del");
 const process = document.getElementById("process");
 const operators = document.querySelectorAll(".input.operator");
-const equalityOperator = document.getElementById("process");
 let displayValue;
 let equation;
 let count = 0;
@@ -18,10 +17,10 @@ function operatorCounting() {
 }
 
 
-const regex=/(\W)/;
+const regex = /([-+*/])/;
 function displayText() {
     if (textDisplay.textContent == "" && regex.test(this.textContent)) {
-        count=0;
+        count = 0;
     } else {
         textDisplay.textContent += this.textContent + "";
     }
@@ -30,12 +29,10 @@ function displayText() {
 function clearDisplay() {
     textDisplay.textContent = "";
     count = 0;
-
 };
 
 function processDisplay() {
-    //for the operator  count
-
+   
     let num1 = 0;
     let num2 = 0;
     equation = textDisplay.textContent;
@@ -43,12 +40,12 @@ function processDisplay() {
     if (equation.includes(str)) {
         //reset the text display 
         return clearDisplay();
-    } else {
+    } else if (count >= 1) {
         //turn them into the values we want now
         let equationArr;
-        equationArr = equation.split(/(\W)/);
-        num1 = parseInt(equationArr[0]);
-        num2 = parseInt(equationArr[2]);
+        equationArr = equation.split(/([-+*/])/);
+        num1 = parseFloat(equationArr[0]);
+        num2 = parseFloat(equationArr[2]);
         if (isNaN(num2)) {
             num2 = num1;
         }
@@ -62,14 +59,15 @@ operators.forEach(element => {
 });
 
 //equality operator count reset 
-equalityOperator.addEventListener("click", function () { count = 0; });
+process.addEventListener("click", processDisplay);
+process.addEventListener("click", function () { count = 0; });
 //loop adding it to all elelemetns
 input.forEach(element => {
     element.addEventListener("click", displayText);
 });
 
 del.addEventListener("click", clearDisplay);
-process.addEventListener("click", processDisplay);
+
 
 //math functions
 function add(num1, num2) {
@@ -105,7 +103,7 @@ function operate(num1, num2, operator) {
             operator = "divide";
             break;
     }
-    answer = window[operator](num1, num2);  
+    answer = window[operator](num1, num2);
     if (answer == "Infinity") {
         answer = "UNDEFINED";
     } else {

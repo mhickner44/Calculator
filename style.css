@@ -50,9 +50,6 @@ body {
   background-color: darkgray;
 }
 
-.input.doubleZero {
-  grid-column: span 2;
-}
 
 .operator.del {
   grid-row: span 2;
